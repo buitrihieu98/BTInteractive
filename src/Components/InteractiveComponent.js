@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text,StyleSheet, TouchableOpacity} from 'react-native';
 
 const InteractiveComponent = ()=>{
+    const [color, setColor] = useState('white')
+
     return(
         <View style={{flex:1, justifyContent: 'flex-start'}}>
             <View style={{flex:5,alignSelf:'flex-start',flexDirection: 'row', marginTop: 24}}>
-                <TouchableOpacity style={styles.buttonRed}></TouchableOpacity>
-                <TouchableOpacity style={styles.buttonGreen}></TouchableOpacity>
-                <TouchableOpacity style={{height: 40, width: 40, backgroundColor: 'blue'}}></TouchableOpacity>
+                <TouchableOpacity style={styles.buttonRed} onPress={()=>{
+                    setColor('red')
+                }}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonGreen} onPress={()=>{
+                    setColor('green')
+                }}></TouchableOpacity>
+                <TouchableOpacity style={styles.buttonBlue} onPress={()=>{
+                    setColor('blue')
+                }}></TouchableOpacity>
                 <TouchableOpacity style={styles.buttonUndoRedo}>
                     <Text>Undo</Text>
                 </TouchableOpacity>
@@ -16,7 +25,7 @@ const InteractiveComponent = ()=>{
                 </TouchableOpacity>
             </View>
             <View style={{flex:6}}>
-                <View style={styles.square}></View>
+                <View style={[styles.square, {backgroundColor: color}]}></View>
             </View>
 
         </View>
@@ -50,7 +59,6 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         height: 120,
         width: 120,
-        backgroundColor: 'white',
         borderColor: 'black',
         borderWidth: 2
     }
